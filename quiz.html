@@ -96,18 +96,24 @@
 </div>
 
 <script>
-// サンプルデータ（実際は law_quiz.json などから読み込む）
-const lawQuizSample = [
-  {
-    "id": "q-law-001",
-    "domain": "Law & Regulation",
-    "question": "米国において、不正アクセスや政府・金融機関のシステムへの侵入を連邦犯罪として罰する主要な法規はどれか？",
-    "options": ["ECPA", "CFAA", "GLBA", "FISMA"],
-    "answer_index": 1,
-    "explanation": "CFAA (Computer Fraud and Abuse Act) は主要なコンピュータ犯罪防止法です。不正アクセスを直接的に禁じています。",
-    "reference_url": "https://www.justice.gov/criminal-ccips/computer-fraud-and-abuse-act"
+async function startQuiz() {
+  try {
+    // 現在チェックされているドメイン（この例では law のみ対応）を取得してフェッチ
+    const response = await fetch('law.json');
+    if (!response.ok) throw new Error('Network response was not ok');
+
+    quizDeck = await response.json();
+    quizDeck.sort(() => Math.random() - 0.5); // 問題をシャッフル
+
+    currentIndex = 0;
+    correctCount = 0;
+    switchScreen('quiz-screen');
+    renderQuestion();
+  } catch (error) {
+    alert("問題データの読み込みに失敗しました。JSONファイルが存在するか確認してください。");
+    console.error('Fetch error:', error);
   }
-];
+}
 
 let quizDeck = [];
 let currentIndex = 0;
