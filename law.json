@@ -1,0 +1,26 @@
+[
+  {
+    "id": "q-law-001",
+    "domain": "Law & Regulation",
+    "question": "米国において、不正アクセスや政府・金融機関のシステムへの侵入を連邦犯罪として罰する主要な法規はどれか？",
+    "options": ["ECPA", "CFAA", "GLBA", "FISMA"],
+    "answer_index": 1,
+    "explanation": "CFAA (Computer Fraud and Abuse Act) は主要なコンピュータ犯罪防止法です。不正アクセスを直接的に禁じています。"
+  },
+  {
+    "id": "q-law-002",
+    "domain": "Law & Regulation",
+    "question": "13歳未満の子供からオンラインで個人情報を収集する場合、検証可能な親の同意を得ることを義務付ける米国の法律はどれか？",
+    "options": ["FERPA", "HIPAA", "COPPA", "CALEA"],
+    "answer_index": 2,
+    "explanation": "COPPA (児童オンラインプライバシー保護法) は13歳未満の子供のデータ収集を規制します。"
+  },
+  {
+    "id": "q-law-003",
+    "domain": "Law & Regulation",
+    "question": "EU域外への個人データ持ち出しを厳格に制限し、「忘れられる権利」などを規定しているプライバシー保護の枠組みはどれか？",
+    "options": ["GDPR", "CCPA", "OECD Privacy Guidelines", "Data Privacy Framework"],
+    "answer_index": 0,
+    "explanation": "GDPR (EU一般データ保護規則) はEU市民のデータ保護を定めた強力な規則です。"
+  }
+]
