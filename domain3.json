@@ -1,5 +1,162 @@
 [
-    {
-        
-    }
+  {
+    "id": "q-d3-001",
+    "domain": "D3: Architecture",
+    "question": "Bell-LaPadulaモデルにおいて、機密情報の漏洩を防ぐために定義されている「上位の機密レベルから下位の機密レベルへのデータ書き込みを禁止する」原則はどれか？",
+    "options": ["Simple Security Property (No Read Up)", "*-Property (No Write Down)", "Simple Integrity Property (No Read Down)", "*-Integrity Property (No Write Up)"],
+    "answer_index": 1,
+    "explanation": "Bell-LaPadulaは「機密性」を保護するモデルです。*-Property（スタープロパティ）は、機密データが低いクリアランスの領域に書き込まれる（漏洩する）ことを防ぎます。"
+  },
+  {
+    "id": "q-d3-002",
+    "domain": "D3: Architecture",
+    "question": "Bibaインテグリティモデルにおける「*-Integrity Property」が禁止している操作はどれか？",
+    "options": ["下位の信頼レベルからのデータ読み取り", "上位の信頼レベルへのデータ書き込み", "同等の信頼レベルでのデータ共有", "権限のない主体によるアクセス"],
+    "answer_index": 1,
+    "explanation": "Bibaは「完全性」を保護するモデルです。*-Integrity Property（No Write Up）は、信頼性の低い（下位の）主体が、信頼性の高い（上位の）データに書き込んで汚染することを防ぎます。"
+  },
+  {
+    "id": "q-d3-003",
+    "domain": "D3: Architecture",
+    "question": "「職務の分離（SoD）」と「適切なトランザクション（Well-formed transactions）」を通じてデータの完全性を維持することを目的としたセキュリティモデルはどれか？",
+    "options": ["Bell-LaPadulaモデル", "Bibaモデル", "Clark-Wilsonモデル", "Brewer-Nashモデル"],
+    "answer_index": 2,
+    "explanation": "Clark-Wilsonモデルは、商業環境における完全性の維持に焦点を当てており、認証されたプログラム（TP）を介したトランザクションと職務の分離を強制します。"
+  },
+  {
+    "id": "q-d3-004",
+    "domain": "D3: Architecture",
+    "question": "コンサルティング会社などで、利益相反を防ぐためにユーザーの過去のアクセス履歴に基づいて動的にアクセス制御を変更するモデルはどれか？",
+    "options": ["Bell-LaPadula", "Biba", "Brewer-Nash (Chinese Wall)", "Clark-Wilson"],
+    "answer_index": 2,
+    "explanation": "Brewer-Nashモデル（別名：Chinese Wallモデル）は、競合する企業間のデータにアクセスさせないよう、動的にアクセス制御リスト（ACL）を変更し利益相反を防ぎます。"
+  },
+  {
+    "id": "q-d3-005",
+    "domain": "D3: Architecture",
+    "question": "システム基盤における「Root of Trust（信頼の基点）」を提供し、暗号鍵の安全な保管やOSブートプロセスの検証を行うハードウェアコンポーネントはどれか？",
+    "options": ["HSM (Hardware Security Module)", "TPM (Trusted Platform Module)", "ASIC", "SED (Self-Encrypting Drive)"],
+    "answer_index": 1,
+    "explanation": "TPMはマザーボード等に組み込まれるマイクロチップであり、ハードウェアベースの暗号化鍵生成やシステムの完全性検証（セキュアブート）を提供します。"
+  },
+  {
+    "id": "q-d3-006",
+    "domain": "D3: Architecture",
+    "question": "共通鍵暗号方式と比較した場合の、公開鍵（非対称）暗号方式の主な利点はどれか？",
+    "options": ["暗号化および復号の処理速度が非常に高速である", "大容量のデータストリームの暗号化に適している", "鍵配送問題が解決され、スケーラビリティが高い", "鍵長が短くても同等の安全性が得られる"],
+    "answer_index": 2,
+    "explanation": "公開鍵暗号方式は、鍵を安全に共有する「鍵配送問題」を解決し、大規模なネットワークでのスケーラビリティに優れます。ただし、処理速度は共通鍵暗号方式よりも遅くなります。"
+  },
+  {
+    "id": "q-d3-007",
+    "domain": "D3: Architecture",
+    "question": "デジタル署名を作成する際、送信者の「否認防止（Non-repudiation）」を確立するために使用される暗号鍵はどれか？",
+    "options": ["送信者の公開鍵", "送信者の秘密鍵", "受信者の公開鍵", "受信者の秘密鍵"],
+    "answer_index": 1,
+    "explanation": "デジタル署名は、メッセージのハッシュ値を「送信者の秘密鍵」で暗号化して作成します。これにより、その送信者しか署名を作成できなかったことが証明され、否認防止が成立します。"
+  },
+  {
+    "id": "q-d3-008",
+    "domain": "D3: Architecture",
+    "question": "異なる2つの入力データから、全く同じハッシュ値が生成されてしまう現象を何と呼ぶか？",
+    "options": ["クリッピング (Clipping)", "コリジョン (Collision)", "ソルト (Salting)", "キーエスクロー (Key Escrow)"],
+    "answer_index": 1,
+    "explanation": "コリジョン（衝突）は、異なるメッセージから同一のメッセージダイジェスト（ハッシュ値）が生成される状態であり、ハッシュ関数の弱点（例: MD5やSHA-1）を突く攻撃に利用されます。"
+  },
+  {
+    "id": "q-d3-009",
+    "domain": "D3: Architecture",
+    "question": "ICS（産業用制御システム）やSCADA環境のセキュリティ要件において、従来のIT環境と異なり「最も優先される」要素はどれか？",
+    "options": ["機密性 (Confidentiality)", "完全性 (Integrity)", "可用性 (Availability)", "否認防止 (Non-repudiation)"],
+    "answer_index": 2,
+    "explanation": "工場のプラントやインフラを制御するOT/ICS環境では、システムの停止が人命や大規模な物理的損害に直結するため、可用性（Availability）が何よりも最優先されます。"
+  },
+  {
+    "id": "q-d3-010",
+    "domain": "D3: Architecture",
+    "question": "データセンターでの火災発生時において、消火ガスを効果的に充満させ、火災を助長させないために空調設備（HVAC）が取るべき初期動作はどれか？",
+    "options": ["給気を停止し、排気を最大にする", "給気・排気ともに停止し、システムをシャットダウンする", "外気を大量に取り込み、室内の温度を下げる", "陽圧を維持して煙の侵入を防ぐ"],
+    "answer_index": 1,
+    "explanation": "火災時には、新鮮な酸素の供給を絶ち、放出された消火ガス（クリーンエージェント等）を室内に留めるために、HVACシステムは即座にシャットダウンされる必要があります。"
+  },
+  {
+    "id": "q-d3-011",
+    "domain": "D3: Architecture",
+    "question": "コモンクライテリア（ISO 15408）において、ユーザーまたはコミュニティが製品に求めるセキュリティ要件を定義したドキュメントを何と呼ぶか？",
+    "options": ["TOE (Target of Evaluation)", "PP (Protection Profile)", "EAL (Evaluation Assurance Level)", "ST (Security Target)"],
+    "answer_index": 1,
+    "explanation": "プロテクションプロファイル（PP）は、特定のカテゴリの製品に対する顧客側のセキュリティ要件です。ベンダー側が自社製品の実装を記述したものはセキュリティターゲット（ST）と呼ばれます。"
+  },
+  {
+    "id": "q-d3-012",
+    "domain": "D3: Architecture",
+    "question": "パブリッククラウドのIaaS（Infrastructure as a Service）環境において、OSのパッチ適用やアンチウイルスの更新に対する責任を持つのは誰か？",
+    "options": ["クラウドサービスプロバイダ (CSP)", "クラウドカスタマー (顧客)", "共有責任 (プロバイダと顧客の両方)", "第三者監査機関"],
+    "answer_index": 1,
+    "explanation": "IaaSの責任共有モデルでは、クラウドプロバイダは物理インフラとハイパーバイザまでを担当します。その上で稼働するゲストOSやアプリケーション、データの管理責任はすべて顧客（カスタマー）にあります。"
+  },
+  {
+    "id": "q-d3-013",
+    "domain": "D3: Architecture",
+    "question": "OSのアーキテクチャにおいて、カーネルやデバイスドライバなど、最も高い特権レベルでコードが実行される保護リング（Protection Ring）はどれか？",
+    "options": ["Ring 0", "Ring 1", "Ring 2", "Ring 3"],
+    "answer_index": 0,
+    "explanation": "Ring 0はOSカーネルが動作する最も特権レベルの高いリングです。一般のユーザーアプリケーションは最も特権レベルの低いRing 3で動作し、システムコールを介してカーネルにアクセスします。"
+  },
+  {
+    "id": "q-d3-014",
+    "domain": "D3: Architecture",
+    "question": "ネットワークの内部か外部かという「境界」に依存せず、「いかなるトラフィックやユーザーもデフォルトでは信頼しない」というアプローチを前提としたアーキテクチャはどれか？",
+    "options": ["多層防御 (Defense in Depth)", "ゼロトラスト (Zero Trust)", "境界防御 (Perimeter Security)", "ソフトウェア定義ネットワーク (SDN)"],
+    "answer_index": 1,
+    "explanation": "ゼロトラストモデルは「Never trust, always verify（決して信頼せず、常に検証せよ）」を基本理念とし、すべてのアクセス要求を都度認証・認可します。"
+  },
+  {
+    "id": "q-d3-015",
+    "domain": "D3: Architecture",
+    "question": "従業員の退職や死亡、暗号鍵の紛失時に備え、第三者機関や指定された管理者に鍵のコピーを安全に預けておく仕組みを何と呼ぶか？",
+    "options": ["キーローテーション", "キークリプトシャドウ", "キーエスクロー (Key Escrow)", "キーエクスチェンジ"],
+    "answer_index": 2,
+    "explanation": "キーエスクローは、暗号化キーへのアクセスを失った場合のデータ損失を防ぐため、または法執行機関の要求に応じるために、キーのコピーを第三者に預託する運用です。"
+  },
+  {
+    "id": "q-d3-016",
+    "domain": "D3: Architecture",
+    "question": "SaltzerとSchroederのセキュリティ設計原則のうち、設計や実装におけるエラーを減らすために「メカニズムは可能な限りシンプルで小さくあるべき」とする原則はどれか？",
+    "options": ["最小特権の原則 (Least Privilege)", "フェイルセーフのデフォルト (Fail-Safe Defaults)", "メカニズムの経済性 (Economy of Mechanism)", "完全な調停 (Complete Mediation)"],
+    "answer_index": 2,
+    "explanation": "メカニズムの経済性（Economy of Mechanism / KISS原則）は、複雑さが脆弱性を生むという考えに基づき、セキュリティアーキテクチャをシンプルに保つことを推奨します。"
+  },
+  {
+    "id": "q-d3-017",
+    "domain": "D3: Architecture",
+    "question": "セキュリティポリシーに違反して情報を伝達する「隠れチャネル（Covert Channel）」のうち、システムリソースの処理時間やCPUの実行サイクルを操作して情報を送る手法はどれか？",
+    "options": ["ストレージチャネル", "タイミングチャネル", "サイドチャネル", "アウトオブバンドチャネル"],
+    "answer_index": 1,
+    "explanation": "タイミングチャネルは、システムの処理時間の長さやタイミングの変化を利用して情報を伝達します。一方、ストレージチャネルはファイルロックや共有メモリなどのリソース領域を介して通信します。"
+  },
+  {
+    "id": "q-d3-018",
+    "domain": "D3: Architecture",
+    "question": "データセンターの消火設備として、水や二酸化炭素の代わりに、オゾン層破壊係数が低くIT機器に残留物を残さない「クリーンエージェント」として使用されるガスはどれか？",
+    "options": ["ハロン1301", "FM-200 (HFC-227ea)", "ドライケミカル", "水噴霧"],
+    "answer_index": 1,
+    "explanation": "FM-200は、環境への悪影響を理由に製造禁止となったハロンの代替として広く使用されているクリーンエージェントガスです。人に安全で、電子機器にダメージを与えません。"
+  },
+  {
+    "id": "q-d3-019",
+    "domain": "D3: Architecture",
+    "question": "仮想化環境において、1つの仮想マシン（VM）上で実行されている悪意のあるプロセスがハイパーバイザの制御を突破し、ホストOSや他のVMにアクセスしてしまう攻撃を何と呼ぶか？",
+    "options": ["VMスプロール", "VMエスケープ", "リソースエグゾースション", "ハイパーバイザスプーフィング"],
+    "answer_index": 1,
+    "explanation": "VMエスケープは、仮想マシンの隔離（アイソレーション）を破り、上位のハイパーバイザや隣接するVMを侵害する非常に深刻なクラウドアーキテクチャ上の脅威です。"
+  },
+  {
+    "id": "q-d3-020",
+    "domain": "D3: Architecture",
+    "question": "物理セキュリティにおける適切な「照明（Lighting）」の設置がもたらす最も主要なセキュリティ上の直接的効果はどれか？",
+    "options": ["侵入者を物理的に阻止する（ディレイ）", "生体認証システムの精度を向上させる", "監視カメラの画質確保と、侵入者に対する心理的抑止効果", "施設のエネルギー効率を最適化する"],
+    "answer_index": 2,
+    "explanation": "照明自体に物理的な壁のような阻止能力はありませんが、CCTV（監視カメラ）の効果を最大化し、発見されるリスクを高めることによって攻撃者の意欲を削ぐ（抑止：Deterrence）重要な役割を果たします。"
+  }
 ]
