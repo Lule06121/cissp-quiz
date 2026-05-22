@@ -1,5 +1,162 @@
 [
-    {
-        
-    }
+  {
+    "id": "q-d4-001",
+    "domain": "D4: Network Security",
+    "question": "IPsecプロトコルスイートはOSI参照モデルのどの層で動作するか？",
+    "options": ["データリンク層 (レイヤ2)", "ネットワーク層 (レイヤ3)", "トランスポート層 (レイヤ4)", "セッション層 (レイヤ5)"],
+    "answer_index": 1,
+    "explanation": "IPsecはIPプロトコル自体を拡張・保護する機能であるため、ネットワーク層（レイヤ3）で動作します。SSL/TLSのように上位層のアプリケーションに依存せず、あらゆるIP通信を保護できます。"
+  },
+  {
+    "id": "q-d4-002",
+    "domain": "D4: Network Security",
+    "question": "パケットの送信元・宛先IPやポート番号だけでなく、TCPのコネクション状態（SYN、ACKなど）や文脈をメモリに記録してアクセス制御を行うファイアウォールはどれか？",
+    "options": ["スタティックパケットフィルタリング", "ステートフルインスペクション", "アプリケーションレベルゲートウェイ", "MACレイヤファイアウォール"],
+    "answer_index": 1,
+    "explanation": "ステートフルインスペクションファイアウォールは、通信の状態（ステート）を追跡するテーブルを保持し、確立されたセッションに対する正当な応答パケットのみを動的に許可します。"
+  },
+  {
+    "id": "q-d4-003",
+    "domain": "D4: Network Security",
+    "question": "IPsecにおいて、データの機密性（暗号化）は提供せず、送信元の認証とデータの完全性のみを提供するプロトコルはどれか？",
+    "options": ["ESP (Encapsulating Security Payload)", "IKE (Internet Key Exchange)", "AH (Authentication Header)", "ISAKMP"],
+    "answer_index": 2,
+    "explanation": "AH (Authentication Header) は認証と完全性のみを提供します。通信内容を暗号化して機密性を確保したい場合は、ESP (Encapsulating Security Payload) を使用します。"
+  },
+  {
+    "id": "q-d4-004",
+    "domain": "D4: Network Security",
+    "question": "WPA3で新たに採用され、従来のWPA2における事前共有キー（PSK）に対する辞書攻撃などのオフライン攻撃の脆弱性を根本的に軽減する鍵交換プロトコルはどれか？",
+    "options": ["TKIP", "SAE (Simultaneous Authentication of Equals)", "CCMP", "RC4"],
+    "answer_index": 1,
+    "explanation": "WPA3では、脆弱だったPSKに代わり、パスワードが短くてもブルートフォース攻撃への耐性が高いSAE (Simultaneous Authentication of Equals) という強力なハンドシェイク手法が導入されました。"
+  },
+  {
+    "id": "q-d4-005",
+    "domain": "D4: Network Security",
+    "question": "侵入検知システム（IDS）において、過去のマルウェアや既知の攻撃パターンのデータベースとトラフィックを比較して検知する手法はどれか？",
+    "options": ["アノマリベース（振る舞い検知）", "シグネチャベース", "ヒューリスティックベース", "統計的ベース"],
+    "answer_index": 1,
+    "explanation": "シグネチャベースは、既知の攻撃パターン（シグネチャ）と一致するかを判断します。誤検知は少ないですが、未知の攻撃（ゼロデイ）を検知できないという弱点があります。"
+  },
+  {
+    "id": "q-d4-006",
+    "domain": "D4: Network Security",
+    "question": "SDN（Software-Defined Networking）のアーキテクチャにおいて、パケットのルーティング経路を決定する「頭脳」の役割を果たし、ネットワーク全体を集中管理するプレーンはどれか？",
+    "options": ["コントロールプレーン", "データプレーン", "マネジメントプレーン", "アプリケーションプレーン"],
+    "answer_index": 0,
+    "explanation": "SDNの最大の特徴は、トラフィックを転送する「データプレーン」と、経路を決定する「コントロールプレーン」を分離し、コントロールプレーンをソフトウェアで集中制御できる点にあります。"
+  },
+  {
+    "id": "q-d4-007",
+    "domain": "D4: Network Security",
+    "question": "攻撃者が偽装した送信元IPアドレスから大量のTCP接続要求パケットを送信し、標的サーバーを「ハーフオープン」状態のままリソース枯渇に追い込むDDoS攻撃はどれか？",
+    "options": ["Smurf攻撃", "Ping of Death", "SYNフラッド攻撃", "Teardrop攻撃"],
+    "answer_index": 2,
+    "explanation": "SYNフラッド攻撃は、TCPのスリーウェイハンドシェイクの仕様を悪用し、SYNパケットを大量に送りつけることでサーバーの接続待機リソースを枯渇させます。"
+  },
+  {
+    "id": "q-d4-008",
+    "domain": "D4: Network Security",
+    "question": "工場などの電磁干渉（EMI）や無線周波数干渉（RFI）が非常に強い環境において、物理的に最も信号干渉や盗聴への耐性が高いネットワークケーブルはどれか？",
+    "options": ["UTP (非シールドより対線)", "STP (シールドより対線)", "同軸ケーブル", "光ファイバーケーブル"],
+    "answer_index": 3,
+    "explanation": "光ファイバーケーブルは電気ではなく光のパルスでデータを伝送するため、EMIやRFIの影響を一切受けず、ケーブルからの電磁波漏洩による盗聴も実質不可能です。"
+  },
+  {
+    "id": "q-d4-009",
+    "domain": "D4: Network Security",
+    "question": "スイッチの物理的なポート接続に依存せず、ネットワークトラフィックのフレームにタグ（IEEE 802.1Q）を付与することで論理的にブロードキャストドメインを分割する技術はどれか？",
+    "options": ["VLAN (仮想LAN)", "VPN (仮想プライベートネットワーク)", "NAT (ネットワークアドレス変換)", "NAC (ネットワークアクセス制御)"],
+    "answer_index": 0,
+    "explanation": "VLANは、物理的なスイッチの構成に関わらず、部門や役割ごとに論理的なネットワークグループを作成し、トラフィックを分離・保護する技術です。"
+  },
+  {
+    "id": "q-d4-010",
+    "domain": "D4: Network Security",
+    "question": "インターネット上の異なる自律システム（AS）間で経路情報を交換するために使用される、事実上の標準外部ゲートウェイプロトコル（EGP）はどれか？",
+    "options": ["OSPF", "RIP", "BGP", "EIGRP"],
+    "answer_index": 2,
+    "explanation": "BGP (Border Gateway Protocol) は、インターネット全体のルーティングを支えるプロトコルです。OSPFやRIPは単一の組織内（AS内）で使用される内部ゲートウェイプロトコル（IGP）です。"
+  },
+  {
+    "id": "q-d4-011",
+    "domain": "D4: Network Security",
+    "question": "DNSに対するキャッシュポイズニング攻撃を防ぐため、DNS応答のデータに対してデジタル署名を付与し、情報の完全性と送信元認証を保証するプロトコルはどれか？",
+    "options": ["DNS-over-HTTPS (DoH)", "DNSSEC", "SPF (Sender Policy Framework)", "DKIM"],
+    "answer_index": 1,
+    "explanation": "DNSSECは、DNSレコードに公開鍵暗号を用いたデジタル署名を追加することで、クライアントが受け取ったIPアドレス等の情報が改ざんされていないことを検証可能にします。"
+  },
+  {
+    "id": "q-d4-012",
+    "domain": "D4: Network Security",
+    "question": "端末が有線スイッチや無線LANアクセスポイントに接続する際、通信を許可する前に認証サーバー（RADIUS等）と連携してユーザーやデバイスの認証（IEEE 802.1X）を行う仕組みの総称はどれか？",
+    "options": ["NAC (Network Access Control)", "NAT (Network Address Translation)", "NAP (Network Access Protection)", "NIPS (Network Intrusion Prevention System)"],
+    "answer_index": 0,
+    "explanation": "NACは、ネットワークのエッジ（境界）で認証やエンドポイントのセキュリティポスチャ（アンチウイルスの状態など）を評価し、アクセスを制御する包括的な仕組みです。"
+  },
+  {
+    "id": "q-d4-013",
+    "domain": "D4: Network Security",
+    "question": "ローカルネットワーク上において、攻撃者が自身のMACアドレスを正当なデフォルトゲートウェイ等のIPアドレスと紐付ける偽の応答メッセージを送信し、トラフィックを傍受する攻撃はどれか？",
+    "options": ["DNSスプーフィング", "ARPポイズニング", "MACフラッディング", "DHCPスプーフィング"],
+    "answer_index": 1,
+    "explanation": "ARPポイズニング（ARPスプーフィング）は、IPアドレスからMACアドレスを解決するARPプロトコルの認証機能がない弱点を突き、中間者攻撃（MiTM）を成立させます。"
+  },
+  {
+    "id": "q-d4-014",
+    "domain": "D4: Network Security",
+    "question": "VoIP（IP電話）環境において、音声データストリーム自体を暗号化し、盗聴やリプレイ攻撃から保護するために使用されるプロトコルはどれか？",
+    "options": ["SIP (Session Initiation Protocol)", "RTP (Real-time Transport Protocol)", "SRTP (Secure RTP)", "H.323"],
+    "answer_index": 2,
+    "explanation": "SIPは呼制御（通話の開始・終了など）を行うプロトコルであり、実際の音声データはRTPで運ばれます。このRTPにAES等の暗号化と認証を追加したものがSRTPです。"
+  },
+  {
+    "id": "q-d4-015",
+    "domain": "D4: Network Security",
+    "question": "コンテンツを地理的に分散したエッジサーバー群にキャッシュすることで、正規ユーザーへの応答速度を向上させるとともに、大規模なDDoS攻撃のトラフィックを分散・吸収する技術はどれか？",
+    "options": ["ロードバランサ", "CDN (コンテンツ配信ネットワーク)", "リバースプロキシ", "SD-WAN"],
+    "answer_index": 1,
+    "explanation": "CDN（Content Delivery Network）は、Webコンテンツのキャッシュ配信によるパフォーマンス向上だけでなく、その巨大なインフラ帯域を利用したDDoS防御策としても極めて有効です。"
+  },
+  {
+    "id": "q-d4-016",
+    "domain": "D4: Network Security",
+    "question": "データセンターやクラウド環境において、個々のワークロードや仮想マシンレベルできめ細かいセキュリティポリシーを適用し、攻撃者のラテラルムーブメント（横方向の移動）を防ぐアプローチはどれか？",
+    "options": ["VLANタグ付け", "境界ファイアウォール", "マイクロセグメンテーション", "ポートセキュリティ"],
+    "answer_index": 2,
+    "explanation": "マイクロセグメンテーションはゼロトラストの核心的な概念の一つであり、内部ネットワークであっても通信単位ごとにファイアウォール機能を持たせ、被害の拡散を最小限に抑えます。"
+  },
+  {
+    "id": "q-d4-017",
+    "domain": "D4: Network Security",
+    "question": "ストレージエリアネットワーク（SAN）のトラフィックを、専用のファイバチャネル（FC）ケーブルではなく、既存のイーサネットネットワーク上でカプセル化して伝送するコンバージドプロトコルはどれか？",
+    "options": ["iSCSI", "FCoE (Fibre Channel over Ethernet)", "NFS", "SMB"],
+    "answer_index": 1,
+    "explanation": "FCoEは、FCフレームをそのままイーサネットフレームに乗せる技術であり、ネットワークインフラの統合によるコスト削減と運用効率化を実現します。"
+  },
+  {
+    "id": "q-d4-018",
+    "domain": "D4: Network Security",
+    "question": "IPsecにおける「トランスポートモード」と「トンネルモード」の違いに関する記述のうち、適切なものはどれか？",
+    "options": ["トランスポートモードはパケット全体（元のIPヘッダ含む）を暗号化する", "トンネルモードは元のIPヘッダを暗号化せずペイロードのみを保護する", "トランスポートモードは主にホスト間（エンドツーエンド）の通信で使用される", "トンネルモードは内部ネットワークでのみ使用可能である"],
+    "answer_index": 2,
+    "explanation": "トランスポートモードは元のIPヘッダを維持するため、主にPC対PCなどのエンドツーエンドで使用されます。トンネルモードはパケット全体を新しいIPヘッダでカプセル化するため、主にサイト間VPN（ルータ間）で使用されます。"
+  },
+  {
+    "id": "q-d4-019",
+    "domain": "D4: Network Security",
+    "question": "無線LANのエンタープライズ認証（IEEE 802.1X）において、クライアントと認証サーバーの「双方」にデジタル証明書を要求し、最も強力な相互認証を提供するEAPプロトコルはどれか？",
+    "options": ["EAP-MD5", "EAP-TLS", "PEAP", "EAP-TTLS"],
+    "answer_index": 1,
+    "explanation": "EAP-TLSはクライアントとサーバーの両方にPKI証明書を要求するため、最もセキュアですが、証明書の配布・管理という運用上のオーバーヘッドが大きくなります。"
+  },
+  {
+    "id": "q-d4-020",
+    "domain": "D4: Network Security",
+    "question": "IPv6におけるセキュリティ機能の特徴として正しいものはどれか？",
+    "options": ["NATがデフォルトで有効化され内部IPを隠蔽する", "IPsecの実装がプロトコル仕様として標準的に組み込まれている", "ブロードキャストによるARPポイズニングに脆弱である", "パケットヘッダのチェックサムによって完全性が常に保証される"],
+    "answer_index": 1,
+    "explanation": "IPv4では後付けだったIPsec機能が、IPv6ではプロトコルスイートの標準の一部として組み込まれており、エンドツーエンドの暗号化通信を容易に実装できる設計となっています。"
+  }
 ]
