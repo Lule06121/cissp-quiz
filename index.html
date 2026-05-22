@@ -83,7 +83,6 @@
 <script>
 let quizDeck = [], currentIndex = 0, correctCount = 0;
 
-// 模擬試験設定の表示切り替え
 document.querySelectorAll('input[name="mode"]').forEach(r => {
   r.onchange = () => document.getElementById('mock-settings').style.display = (r.value === 'mock' ? 'block' : 'none');
 });
@@ -94,8 +93,12 @@ window.onload = () => {
 };
 
 async function startQuiz() {
-  const cbs = document.querySelectorAll('.domain-cb:checked');
-  if (cbs.length === 0) return alert("ドメインを選択してください");
+  let cbs = Array.from(document.querySelectorAll('.domain-cb:checked'));
+  // ドメイン未選択時は全てを対象にする
+  if (cbs.length === 0) {
+    cbs = Array.from(document.querySelectorAll('.domain-cb'));
+  }
+  
   let all = [];
   for (let cb of cbs) {
     try {
