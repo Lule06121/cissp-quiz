@@ -56,7 +56,7 @@
     
     <span class="section-title">Domains</span>
     <div id="domain-list">
-      <label><input type="checkbox" class="domain-cb" value="domain1" checked> D1: Risk Management</label>
+      <label><input type="checkbox" class="domain-cb" value="domain1"> D1: Risk Management</label>
       <label><input type="checkbox" class="domain-cb" value="domain2"> D2: Asset Security</label>
       <label><input type="checkbox" class="domain-cb" value="domain3"> D3: Architecture</label>
       <label><input type="checkbox" class="domain-cb" value="domain4"> D4: Network Security</label>
@@ -170,3 +170,51 @@ function renderQuestion() {
 }
 
 function checkAnswer(selectedIndex) {
+  const item = quizDeck[currentIndex];
+  const btns = document.querySelectorAll('.option-btn');
+  
+  btns.forEach(btn => btn.disabled = true);
+  
+  const isCorrect = selectedIndex === item.answer_index;
+  if (isCorrect) {
+    btns[selectedIndex].classList.add('correct');
+    document.getElementById('feedback-result').innerText = "✅ 正解";
+    document.getElementById('feedback-result').style.color = "var(--success)";
+    correctCount++;
+  } else {
+    btns[selectedIndex].classList.add('wrong');
+    btns[item.answer_index].classList.add('correct');
+    document.getElementById('feedback-result').innerText = "❌ 不正解";
+    document.getElementById('feedback-result').style.color = "var(--danger)";
+  }
+  
+  document.getElementById('explanation-text').innerText = item.explanation || "解説がありません。";
+  const refArea = document.getElementById('reference-area');
+  refArea.innerHTML = item.reference_url ? `<a href="${item.reference_url}" target="_blank" class="ref-link">🌐 参考リンクを開く</a>` : '';
+  
+  document.getElementById('feedback-area').style.display = 'block';
+}
+
+function renderNext() {
+  currentIndex++;
+  if (currentIndex < quizDeck.length) {
+    renderQuestion();
+  } else {
+    showFinalResult();
+  }
+}
+
+function showFinalResult() {
+  switchScreen('result-screen');
+  document.getElementById('final-score').innerText = `${correctCount} / ${quizDeck.length}`;
+  const rate = (correctCount / quizDeck.length) * 100;
+  document.getElementById('score-comment').innerText = rate >= 70 ? "合格圏内です！" : "さらなる学習が必要です。";
+}
+
+function switchScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>
