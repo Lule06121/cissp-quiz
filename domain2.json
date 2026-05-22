@@ -138,4 +138,25 @@
   {
     "id": "q-d2-018",
     "domain": "D2: Asset Security",
-    "question":
+    "question": "機密情報を含むハードディスクを、他部門で再利用する（組織内での移管）場合に求められる適切なメディア処理手法はどれか？",
+    "options": ["フォーマットのみ", "クリアリング (Clearing)", "パージ (Purging)", "破壊 (Destruction)"],
+    "answer_index": 1,
+    "explanation": "組織内での再利用であれば、通常のデータ復旧ツールでは復元できないようにする「クリアリング（上書き）」で十分とされます。組織外に出す場合はパージまたは破壊が必要です。"
+  },
+  {
+    "id": "q-d2-019",
+    "domain": "D2: Asset Security",
+    "question": "クラウド環境において、組織のセキュリティポリシーをクラウドサービスに適用し、データの可視化やシャドーITの制御を行う中継ポイントとして機能するソリューションはどれか？",
+    "options": ["SIEM (Security Information and Event Management)", "CASB (Cloud Access Security Broker)", "DLP (Data Loss Prevention)", "MDM (Mobile Device Management)"],
+    "answer_index": 1,
+    "explanation": "CASBはオンプレミスのユーザーとクラウドサービスの間に配置され、アクセス制御、コンプライアンス管理、脅威保護などのポリシーを一元的に適用するソリューションです。"
+  },
+  {
+    "id": "q-d2-020",
+    "domain": "D2: Asset Security",
+    "question": "デジタル著作権管理（DRM）技術に関連し、コンテンツの出所や不正コピーの流出元を特定するために、データ内に見えない識別情報を埋め込む技術はどれか？",
+    "options": ["ステガノグラフィ (Steganography)", "電子透かし (Watermarking)", "トークン化 (Tokenization)", "セキュアハッシュ (Secure Hashing)"],
+    "answer_index": 1,
+    "explanation": "電子透かし（Watermarking）は、文書、画像、動画などのデジタルコンテンツに著作権情報や購入者情報などを埋め込み、不正流出時の追跡（トラッキング）を可能にする技術です。"
+  }
+]
