@@ -5,19 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>CISSP Quiz Simulator</title>
 <style>
-  :root {
-    --bg-color: #0f172a; --card-bg: #1e293b; --text-main: #f8fafc;
-    --text-sub: #94a3b8; --accent: #a3e635; --danger: #ef4444; --success: #22c55e;
-  }
+  :root { --bg-color: #0f172a; --card-bg: #1e293b; --text-main: #f8fafc; --text-sub: #94a3b8; --accent: #a3e635; --danger: #ef4444; --success: #22c55e; }
   body { font-family: -apple-system, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
   .screen { width: 95vw; max-width: 500px; display: none; padding-top: 20px; }
   .screen.active { display: flex; flex-direction: column; }
   .box { background: var(--card-bg); padding: 25px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); margin-bottom: 20px; }
-  h1 { font-size: 1.5rem; color: var(--accent); margin-bottom: 20px; text-align: center; }
   .section-title { font-weight: bold; margin: 20px 0 10px; display: block; border-bottom: 1px solid #334155; padding-bottom: 5px; color: var(--accent); }
-  label { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; cursor: pointer; font-size: 1rem; }
-  input[type="checkbox"], input[type="radio"] { width: 20px; height: 20px; accent-color: var(--accent); }
-  .status-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; color: var(--text-sub); }
+  label { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; cursor: pointer; }
   .option-btn { background: #334155; border: 2px solid #475569; color: white; padding: 15px; border-radius: 12px; margin-bottom: 10px; width: 100%; cursor: pointer; }
   .option-btn.correct { background: var(--success); }
   .option-btn.wrong { background: var(--danger); }
@@ -28,7 +22,10 @@
 
 <div id="setup-screen" class="screen active">
   <div class="box">
-    <h1>CISSP Quiz Simulator</h1>
+    <h1>CISSP Simulator</h1>
+    <span class="section-title">History</span>
+    <pre id="top-history" style="font-size:0.8rem; color:var(--text-sub);"></pre>
+    
     <span class="section-title">Domains</span>
     <div id="domain-list">
       <label><input type="checkbox" class="domain-cb" value="domain1"> D1: Risk Management</label>
@@ -39,23 +36,36 @@
       <label><input type="checkbox" class="domain-cb" value="domain6"> D6: Assessment</label>
       <label><input type="checkbox" class="domain-cb" value="domain7"> D7: Operations</label>
       <label><input type="checkbox" class="domain-cb" value="domain8"> D8: Software Security</label>
+      <label><input type="checkbox" class="domain-cb" value="law"> Law & Regulation</label>
     </div>
-    <span class="section-title">Law & Regulation</span>
-    <label><input type="checkbox" class="domain-cb" value="law"> Law & Regulation</label>
+
     <span class="section-title">Mode</span>
     <label><input type="radio" name="mode" value="all" checked> 全問題 (All)</label>
     <label><input type="radio" name="mode" value="spaced"> 弱点集中 (Review)</label>
-    <button class="primary-btn" onclick="startQuiz()" id="start-btn">開始</button>
+    <label><input type="radio" name="mode" value="mock"> 模擬試験 (Mock Exam)</label>
+    
+    <div id="mock-settings" style="margin-top:10px; display:none;">
+      <select id="mock-count" class="primary-btn" style="background:#475569; color:white;">
+        <option value="10">10問</option>
+        <option value="20">20問</option>
+        <option value="30">30問</option>
+      </select>
+    </div>
+
+    <button class="primary-btn" onclick="startQuiz()" id="start-btn" style="margin-top:20px;">開始</button>
   </div>
 </div>
 
 <div id="quiz-screen" class="screen">
-  <div class="status-bar"><span id="quiz-progress"></span><button onclick="location.reload()" style="background:none; border:none; color:var(--text-sub); cursor:pointer;">終了</button></div>
   <div class="box">
+    <div style="display:flex; justify-content:space-between; margin-bottom:15px; color:var(--text-sub);">
+      <span id="quiz-progress"></span>
+      <button onclick="showResult()" style="background:none; border:none; color:var(--danger); cursor:pointer;">中断</button>
+    </div>
     <div id="question-text" style="margin-bottom:20px; font-weight:bold;"></div>
     <div id="options-container"></div>
-    <div id="feedback-area" style="display:none; border-top:1px solid #334155; padding-top:15px; margin-top:15px;">
-      <div id="feedback-result" style="font-weight:bold; margin-bottom:10px;"></div>
+    <div id="feedback-area" style="display:none; border-top:1px solid #334155; padding-top:15px;">
+      <div id="feedback-result" style="font-weight:bold; margin-bottom:5px;"></div>
       <div id="explanation-text" style="color:var(--text-sub); font-size:0.9rem;"></div>
       <button class="primary-btn" style="margin-top:20px;" onclick="renderNext()">次へ</button>
     </div>
@@ -65,11 +75,7 @@
 <div id="result-screen" class="screen">
   <div class="box" style="text-align:center;">
     <h1>Result</h1>
-    <div id="final-score" style="font-size:2rem; font-weight:bold; margin:20px 0;"></div>
-    <div style="text-align:left; font-size:0.8rem; color:var(--text-sub);">
-      <p>過去の履歴 (直近5回):</p>
-      <pre id="history-log"></pre>
-    </div>
+    <div id="final-score" style="font-size:2.5rem; font-weight:bold; margin:20px 0;"></div>
     <button class="primary-btn" onclick="location.reload()">トップへ戻る</button>
   </div>
 </div>
@@ -77,25 +83,48 @@
 <script>
 let quizDeck = [], currentIndex = 0, correctCount = 0;
 
+// 模擬試験設定の表示切り替え
+document.querySelectorAll('input[name="mode"]').forEach(r => {
+  r.onchange = () => document.getElementById('mock-settings').style.display = (r.value === 'mock' ? 'block' : 'none');
+});
+
+window.onload = () => {
+  const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
+  document.getElementById('top-history').innerText = history.slice(-3).reverse().map(h => `${h.date}: ${h.score}`).join('\n') || "履歴なし";
+};
+
 async function startQuiz() {
   const cbs = document.querySelectorAll('.domain-cb:checked');
   if (cbs.length === 0) return alert("ドメインを選択してください");
-  
   let all = [];
   for (let cb of cbs) {
     try {
       const res = await fetch(`${cb.value}.json`);
       if (res.ok) all = all.concat(await res.json());
-    } catch(e) { console.warn(e); }
+    } catch(e) {}
   }
 
   const mode = document.querySelector('input[name="mode"]:checked').value;
   const stats = JSON.parse(localStorage.getItem('quizStats') || '{}');
   
-  quizDeck = mode === 'spaced' ? all.filter(q => (stats[q.id]?.correct / stats[q.id]?.total || 0) < 0.7) : all;
+  if (mode === 'spaced') {
+    quizDeck = all.filter(q => (stats[q.id]?.correct / stats[q.id]?.total || 0) < 0.7);
+  } else if (mode === 'mock') {
+    quizDeck = all;
+    quizDeck.sort(() => Math.random() - 0.5);
+    quizDeck = quizDeck.slice(0, parseInt(document.getElementById('mock-count').value));
+  } else {
+    quizDeck = all;
+  }
+  
   if (quizDeck.length === 0) return alert("対象問題が見つかりません");
   
-  quizDeck.sort(() => Math.random() - 0.5);
+  // Shuffle
+  for (let i = quizDeck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [quizDeck[i], quizDeck[j]] = [quizDeck[j], quizDeck[i]];
+  }
+  
   currentIndex = 0; correctCount = 0;
   document.getElementById('setup-screen').classList.remove('active');
   document.getElementById('quiz-screen').classList.add('active');
@@ -146,11 +175,9 @@ function showResult() {
   const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
   history.push({ date: new Date().toLocaleDateString(), score: `${correctCount}/${quizDeck.length}` });
   localStorage.setItem('quizHistory', JSON.stringify(history));
-  
   document.getElementById('quiz-screen').classList.remove('active');
   document.getElementById('result-screen').classList.add('active');
   document.getElementById('final-score').innerText = `${correctCount} / ${quizDeck.length}`;
-  document.getElementById('history-log').innerText = history.slice(-5).reverse().map(h => `${h.date}: ${h.score}`).join('\n');
 }
 </script>
 </body>
