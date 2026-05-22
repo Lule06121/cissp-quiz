@@ -64,7 +64,11 @@
       <label><input type="checkbox" class="domain-cb" value="domain6"> D6: Assessment</label>
       <label><input type="checkbox" class="domain-cb" value="domain7"> D7: Operations</label>
       <label><input type="checkbox" class="domain-cb" value="domain8"> D8: Software Security</label>
-      <label><input type="checkbox" class="domain-cb" value="law" checked> Law & Regulation</label>
+    </div>
+
+    <span class="section-title">Law & Regulation (米国法規制)</span>
+    <div id="extra-list">
+      <label><input type="checkbox" class="domain-cb" value="law"> Law & Regulation</label>
     </div>
     
     <span class="section-title">Mode</span>
@@ -166,51 +170,3 @@ function renderQuestion() {
 }
 
 function checkAnswer(selectedIndex) {
-  const item = quizDeck[currentIndex];
-  const btns = document.querySelectorAll('.option-btn');
-  
-  btns.forEach(btn => btn.disabled = true);
-  
-  const isCorrect = selectedIndex === item.answer_index;
-  if (isCorrect) {
-    btns[selectedIndex].classList.add('correct');
-    document.getElementById('feedback-result').innerText = "✅ 正解";
-    document.getElementById('feedback-result').style.color = "var(--success)";
-    correctCount++;
-  } else {
-    btns[selectedIndex].classList.add('wrong');
-    btns[item.answer_index].classList.add('correct');
-    document.getElementById('feedback-result').innerText = "❌ 不正解";
-    document.getElementById('feedback-result').style.color = "var(--danger)";
-  }
-  
-  document.getElementById('explanation-text').innerText = item.explanation || "解説がありません。";
-  const refArea = document.getElementById('reference-area');
-  refArea.innerHTML = item.reference_url ? `<a href="${item.reference_url}" target="_blank" class="ref-link">🌐 参考リンクを開く</a>` : '';
-  
-  document.getElementById('feedback-area').style.display = 'block';
-}
-
-function renderNext() {
-  currentIndex++;
-  if (currentIndex < quizDeck.length) {
-    renderQuestion();
-  } else {
-    showFinalResult();
-  }
-}
-
-function showFinalResult() {
-  switchScreen('result-screen');
-  document.getElementById('final-score').innerText = `${correctCount} / ${quizDeck.length}`;
-  const rate = (correctCount / quizDeck.length) * 100;
-  document.getElementById('score-comment').innerText = rate >= 70 ? "合格圏内です！" : "さらなる学習が必要です。";
-}
-
-function switchScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-</script>
-</body>
-</html>
